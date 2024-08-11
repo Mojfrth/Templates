@@ -21,3 +21,29 @@ void dfs(ll node,ll n){
         }
         return node;
 	} 
+    ll n,q;
+    cin>>n>>q;
+    par.assign(n,-1);
+    adj.assign(n,{});
+    dp=vector<vector<ll>>(n,vector<ll>(21,-1));
+    // vector<vector<ll>> dp(n,vector<ll>(20,0));
+    rep(i,1,n){
+        ll u;
+        cin>>u;
+        u--;
+        adj[u].pb(i);
+        adj[i].pb(u);
+        par[i]=u;
+    }
+    dfs(0,n);
+    rep(i,0,q){
+        ll u,v;
+        cin>>u>>v;
+        u--;
+        ll k=binlift(u,v);
+        if(k!=-1)
+        cout<<k+1<<endl;
+        else
+        cout<<k<<endl;
+    }
+
