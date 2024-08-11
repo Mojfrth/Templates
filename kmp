@@ -1,0 +1,13 @@
+
+vector<int> kmp(string &s){
+    int n=s.length();
+    vector<int> lps(n,0);
+    for(int i=1;i<n;i++){
+        int pid=lps[i-1];
+        while(pid>0 && s[i]!=s[pid]){
+            pid=lps[pid-1];
+        }
+        lps[i]=pid+(s[i]==s[pid]?1:0);
+    }
+    return lps;
+}
